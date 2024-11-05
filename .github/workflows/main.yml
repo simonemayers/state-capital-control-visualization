@@ -17,6 +17,8 @@ jobs:
           echo "Automated commit $(date)" >> daily_commit_log.txt  # Example: Appending a date to a file
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "simonemayers"
           git config --global user.email "simone21295@gmail.com"
