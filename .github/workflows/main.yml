@@ -18,16 +18,17 @@ jobs:
         run: |
           git config --global user.name "simonemayers"
           git config --global user.email "simone21295@gmail.com"
-      
+
       - name: Make changes
         run: |
           echo "Automated commit $(date)" >> daily_commit_log.txt  # Example: Appending a date to a file
 
-      - name: Pull, commit, and push changes
+      - name: Pull, rebase, commit, and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git pull https://x-access-token:${GITHUB_TOKEN}@github.com/simonemayers/state-capital-control-visualization.git main --rebase
+          git fetch https://x-access-token:${GITHUB_TOKEN}@github.com/simonemayers/state-capital-control-visualization.git main
+          git rebase FETCH_HEAD  # Rebase onto the latest commit to avoid merge conflicts
           git add .
           git commit -m "Automated daily commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/simonemayers/state-capital-control-visualization.git main
