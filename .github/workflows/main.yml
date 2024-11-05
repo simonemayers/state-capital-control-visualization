@@ -32,4 +32,4 @@ jobs:
           git pull origin main
           git add .
           git commit -m "Automated daily commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/simonemayers/state-capital-control-visualization.git origin main --force
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/simonemayers/state-capital-control-visualization.git origin main
